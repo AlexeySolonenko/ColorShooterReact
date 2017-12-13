@@ -7,6 +7,12 @@ const app = express();
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 // Put all API endpoints under '/api'
 app.get('/api/test', (req, res) => {
   //res.json({"test":"hello, this is test"});
