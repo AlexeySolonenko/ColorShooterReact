@@ -1,0 +1,11 @@
+
+
+20171213
+To fix cors issue with fetch,
+"proxy": {
+  "/api/*": {
+    "target" : "http://localhost:3001"
+  }
+
+  then can resume proxy
+  
