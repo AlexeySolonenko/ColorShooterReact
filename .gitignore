@@ -1,0 +1,7 @@
+# server npm modules and dependenies
+/node_modules
+
+# client npm modules and dependenies
+/client/node_modules
+
+

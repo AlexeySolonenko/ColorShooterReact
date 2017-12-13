@@ -1,0 +1,12 @@
+
+.ball:active .ballPos1 {
+    position: bottom left;
+    visibility: visible;
+
+}
+
+ballPos1 {
+    position: right;
+    visibility: hidden;
+    
+}
