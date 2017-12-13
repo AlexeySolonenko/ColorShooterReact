@@ -12,6 +12,7 @@ class App extends Component {
   this.state = {users: [], beans: []};
   this.fetchBeans = this.fetchBeans.bind(this);
   this.fetchColor = this.fetchColor.bind(this);
+  this.fetchHttp = this.fetchHttp.bind(this);
 };
 
 
@@ -42,24 +43,49 @@ fetchColor() {
   });
 }
 
+fetchHttp() {
+  fetch('http://www.colourlovers.com/api/color/6B4106',{
+    headers: {
+      'Accept': 'text/html, application/json',
+      'Content-Type': 'text/html',
+      'Origin':'192.168.0.1',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Origin, Content-Type'
+    },
+    method: "POST",
+    body : '/color/6B4106'
+  })
+  .then(res => {
+    console.log(res);
+    res.json().then( res => {
+
+    });
+  })
+  .catch(err => {
+    console.log('error');
+    console.log(err);
+  });
+};
+
+
+
+
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
- 
-      
+      <div >
+        
         <div className="frame"> 
           <button className="ball ballPos1"></button>
         </div>
-        <button onClick={this.fetchBeans}>fetch beans</button>
-        {this.state.beans.map(bean => <div key={bean.id}>{bean.beanKind}</div>)}
-        <button onClick={this.fetchColor}>fetch Color</button>
+          <button onClick={this.fetchBeans}>fetch beans</button>
+          {this.state.beans.map(bean => <div key={bean.id}>{bean.beanKind}</div>)}
+          <button onClick={this.fetchColor}>fetch Color</button>
+          <button onClick={this.fetchHttp}>fetch http</button>
+        <div>
+            <button></button>
+        </div>
       </div>
     );
   }
