@@ -11,18 +11,35 @@ class App extends Component {
   super(props);
   this.state = {users: [], beans: []};
   this.fetchBeans = this.fetchBeans.bind(this);
+  this.fetchColor = this.fetchColor.bind(this);
 };
 
-componentDidMount() {
-  fetch('/users')
-    .then(res => res.json())
-    .then(users => this.setState({users}));
-}
 
 fetchBeans(){
   fetch('/beans')
   .then(res => res.json())
   .then(beans => this.setState({beans}));
+}
+
+fetchColor() {
+  let reqBody = JSON.stringify({"jsonrpc":"2.0","method":"generateIntegers","params":{"apiKey":"00000000-0000-0000-0000-000000000000","n":10,"min":1,"max":16777215,"replacement":true,"base":16},"id":12830});
+
+  fetch('https://api.random.org/json-rpc/1/invoke',{
+    method: "POST",
+    body: reqBody
+  })
+  .then( (res) => {
+    res.json().then( (res) => {
+      console.log(res);
+    });
+    })
+  .then( (res) => {
+    console.log(res);
+  })
+  .catch(err => {
+    console.log('Error');
+    console.log(err)
+  });
 }
 
   render() {
@@ -35,13 +52,14 @@ fetchBeans(){
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <h1>Users</h1>
-        {this.state.users.map(user => <div key={user.id}>{user.username}</div>)}
+ 
+      
         <div className="frame"> 
           <button className="ball ballPos1"></button>
         </div>
         <button onClick={this.fetchBeans}>fetch beans</button>
         {this.state.beans.map(bean => <div key={bean.id}>{bean.beanKind}</div>)}
+        <button onClick={this.fetchColor}>fetch Color</button>
       </div>
     );
   }
