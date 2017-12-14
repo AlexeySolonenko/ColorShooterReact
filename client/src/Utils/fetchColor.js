@@ -37,7 +37,7 @@ export const fetchColor = (state, stateControllingCallback, color) => {
             console.log(Date.now);
             stateControllingCallback(newState);
             console.log(Date.now());
-            return [false, err];
+            return 'error';
         });
   }
   
@@ -49,14 +49,6 @@ export const fetchColor = (state, stateControllingCallback, color) => {
 
 export const fetchHttp = () => {
     fetch('http://www.colourlovers.com/api/color/6B4106',{
-      headers: {
-        'Accept': 'text/html, application/json',
-        'Content-Type': 'text/html',
-        'Origin':'192.168.0.1',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-        'Access-Control-Allow-Headers': 'Origin, Content-Type'
-      },
       method: "POST",
       body : '/color/6B4106'
     })

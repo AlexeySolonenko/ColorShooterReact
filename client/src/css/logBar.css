@@ -1,0 +1,10 @@
+.log-bar {
+    position: fixed;
+    right: 10vw;
+    top: 5vh;
+    border: 1px black solid;
+    width: 70vw;
+    height: 10vw;
+    overflow-y: scroll;
+    font-size: 0.75em;
+}
